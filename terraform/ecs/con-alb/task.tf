@@ -6,6 +6,8 @@ resource "aws_ecs_task_definition" "this" {
   memory                   = "2048"
   execution_role_arn       = aws_iam_role.ecs_execution_role.arn
 
+  depends_on = [aws_cloudwatch_log_group.myappenv]
+
   container_definitions = jsonencode([
     {
       name      = "mi-app"
@@ -25,6 +27,15 @@ resource "aws_ecs_task_definition" "this" {
           valueFrom = "${aws_secretsmanager_secret.myappenv.arn}:entorno_1::"
         }
      ]
+
+     logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "/ecs/myappenv"
+        "awslogs-region"        = "us-east-1"
+        "awslogs-stream-prefix" = "ecs"
+      }
+     }
     }
   ])
 }
