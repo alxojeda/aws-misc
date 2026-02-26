@@ -10,4 +10,6 @@ aws ecr create-repository --repository-name mi-app-env --region us-east-1
 ```
 
 ## Subir imagen
+```
 docker push <id-cuenta>.dkr.ecr.us-east-1.amazonaws.com/mi-app-env
+```
