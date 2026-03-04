@@ -18,6 +18,15 @@ resource "aws_ecs_task_definition" "this" {
           protocol      = "tcp"
         }
       ]
+
+      logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "/ecs/sinalb"
+        "awslogs-region"        = "us-east-1"
+        "awslogs-stream-prefix" = "ecs-sinalb"
+      }
+     }
     }
   ])
 }
