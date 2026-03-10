@@ -22,7 +22,7 @@ resource "aws_ecs_task_definition" "app-front" {
       environment = [
         {
           name  = "EXTERNAL_ENDPOINT"
-          value = "http://localhost:3001/hostname"
+          value = "http://api.services.local:3001/hostname"
         }
       ]
 
